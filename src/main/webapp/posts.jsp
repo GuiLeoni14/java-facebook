@@ -22,7 +22,7 @@
 				
 				<div class="d-flex justify-content-between align-items-center mb-3">
 				  <h1 class="m-0">Posts</h1>
-				  <a href="form_post.jsp" class="btn btn-primary">
+				  <a href="${pageContext.request.contextPath}/post/load" class="btn btn-primary">
 				    Novo Post
 				  </a>
 				</div>

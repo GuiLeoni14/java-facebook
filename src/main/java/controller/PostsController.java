@@ -17,7 +17,7 @@ import model.dao.DAOFactory;
 import model.dao.PostDAO;
 import model.dao.UserDAO;
 
-@WebServlet(urlPatterns = {"/posts", "/post/save", "/post/update", "/post/delete"})
+@WebServlet(urlPatterns = {"/posts", "/post/save", "/post/update", "/post/load", "/post/delete"})
 public class PostsController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -53,6 +53,12 @@ public class PostsController extends HttpServlet {
 				rd.forward(req, resp);
 				break;
 			}
+			case "/Facebook/post/load": {
+				loadAllUsers(req);
+				RequestDispatcher rd = req.getRequestDispatcher("/form_post.jsp");
+				rd.forward(req, resp);
+				break;
+			}
 			case "/Facebook/post/delete": {
 				deletePost(req);
 				resp.sendRedirect("/Facebook/posts");
@@ -74,6 +80,15 @@ public class PostsController extends HttpServlet {
 		}
 	}
 
+	private void loadAllUsers(HttpServletRequest req) {
+	    UserDAO userDao = DAOFactory.createDAO(UserDAO.class);
+	    try {
+	        req.setAttribute("usuarios", userDao.listAll()); // aqui carrega os usuários
+	    } catch (ModelException e) {
+	        e.printStackTrace();
+	    }
+	}
+	
 	private void loadPost(HttpServletRequest req) {
 	    int postId = Integer.parseInt(req.getParameter("postId"));
 	    PostDAO postDao = DAOFactory.createDAO(PostDAO.class);
