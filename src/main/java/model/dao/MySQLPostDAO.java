@@ -26,19 +26,20 @@ public class MySQLPostDAO implements PostDAO {
 
 	@Override
 	public boolean update(Post post) throws ModelException {
-		
-		DBHandler db = new DBHandler();
-		
-		String sqlUpdate = "UPDATE posts "
-						 + " SET content = ? "
-						 + " WHERE id = ?;";
-		
-		db.prepareStatement(sqlUpdate);
-		
-		db.setString(1, post.getContent());
-		db.setInt(2, post.getId());
-		
-		return db.executeUpdate() > 0;
+	    
+	    DBHandler db = new DBHandler();
+	    
+	    String sqlUpdate = "UPDATE posts "
+	                     + " SET content = ?, user_id = ? "
+	                     + " WHERE id = ?;";
+	    
+	    db.prepareStatement(sqlUpdate);
+	    
+	    db.setString(1, post.getContent());
+	    db.setInt(2, post.getUser().getId());
+	    db.setInt(3, post.getId());
+	    
+	    return db.executeUpdate() > 0;
 	}
 
 	@Override

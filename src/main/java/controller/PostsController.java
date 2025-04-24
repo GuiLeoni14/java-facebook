@@ -157,7 +157,7 @@ public class PostsController extends HttpServlet {
 			User user = new User(userId);
 			post.setUser(user);
 		}
-
+		System.out.println(post.getUser().getName());
 		return post;
 	}
 }

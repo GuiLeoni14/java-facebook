@@ -43,7 +43,7 @@
 							<tr>
 								<th scope="row">${post.id}</th>
 								<td>${post.content}</td>
-								<td><fmt:formatDate value="${post.postDate}" pattern="dd/MM/yyyy HH:mm" /></td>
+								<td>${post.postDate}</td>
 								<td>${post.user.name}</td>
 								<td>
 									<a class="bi bi-pencil-square" 
