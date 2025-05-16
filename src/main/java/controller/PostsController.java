@@ -83,7 +83,7 @@ public class PostsController extends HttpServlet {
 	private void loadAllUsers(HttpServletRequest req) {
 	    UserDAO userDao = DAOFactory.createDAO(UserDAO.class);
 	    try {
-	        req.setAttribute("usuarios", userDao.listAll()); // aqui carrega os usuários
+	        req.setAttribute("usuarios", userDao.listAll());
 	    } catch (ModelException e) {
 	        e.printStackTrace();
 	    }
@@ -100,7 +100,7 @@ public class PostsController extends HttpServlet {
 	            throw new ModelException("Post não encontrado");
 
 	        req.setAttribute("post", post);
-	        req.setAttribute("usuarios", userDao.listAll()); // aqui carrega os usuários
+	        req.setAttribute("usuarios", userDao.listAll());
 	    } catch (ModelException e) {
 	        e.printStackTrace();
 	    }
@@ -157,7 +157,6 @@ public class PostsController extends HttpServlet {
 			User user = new User(userId);
 			post.setUser(user);
 		}
-		System.out.println(post.getUser().getName());
 		return post;
 	}
 }
